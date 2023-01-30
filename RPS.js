@@ -1,20 +1,25 @@
 function getComputerChoice(){
 
+
+
     //RNG for the computers choice
     let x = Math.floor(Math.random()*3);
     let choice = ""
     
+
     //Check the RNG choice to assign an outcome
-    if (x=0){
+    if (x == 0){
         choice = "rock"
     }
-    else if (x=1){
+    else if (x == 1){
         choice = "paper"
     }
     else {
         choice = "scissors"
     }
     
+    console.log("The RNG computer choice is " + choice + ".");
+
     return choice
 }
 
@@ -27,7 +32,7 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection){
         result = "tie";
     }
-    if (playerSelection == "rock"){
+    else if (playerSelection == "rock"){
         if (computerSelection == "scissors"){
             result = "player wins";
         }
@@ -51,23 +56,26 @@ function playRound(playerSelection, computerSelection) {
             result = "computer wins";
         }
     }
+
+    //results check
+    console.log("The player choice is " + playerSelection + ".");
+    console.log("The computer choice is " + computerSelection + ".");
+    console.log("The result is " + result + ".");
     
     //Check and return certain results
-    if (result = "player wins"){
-        return "The player wins, " + playerSelection + " beats " + computerSelection ".";
+    if (result == "player wins"){
+        return ("The player wins, " + playerSelection + " beats " +computerSelection + ".");
     }
-    else if (result = "computer wins"){
-        return "The computer wins, " + computerSelection + " beats " + playerSelection ".";
+    else if (result == "computer wins"){
+        return ("The computer wins, " + computerSelection + " beats " + playerSelection + ".");
     }
     else{
-        return "It's a tie! Two " + playerSelection + "s.";
+        return ("It's a tie! Two " + playerSelection + "s.");
     }
 }
     //Get the computers choice
     const playerSelection = "rock";
     const computerSelection = getComputerChoice();
-
-
 
     //Compare the two choices for the result and print to console
     console.log(playRound(playerSelection, computerSelection));
