@@ -7,7 +7,7 @@ function getComputerChoice(){
 
 function playRound(playerSelection, computerSelection) {
     
-    //Nested if statements to check all results
+    //Compare all results
     if (playerSelection == computerSelection){
             result = "tie";
         }
@@ -62,11 +62,11 @@ for(let i = 0; i<5; i++){
 
 //Declare the winner
 if(playerScore > computerScore){
-    console.log("You win! " + playerScore + "-" + computerScore +".");
+    console.log("You win! " + playerScore + "-" + computerScore + ".");
 }
 else if(computerScore > playerScore){
-    console.log("You lose, big sad. " + playerScore + "-" + computerScore +".");
+    console.log("You lose, big sad. " + playerScore + "-" + computerScore +  ".");
 }
 else{
-    console.log("It's a draw! " + playerScore + "-" + computerScore +".");
+    console.log("It's a draw! " + playerScore + "-" + computerScore + ".");
 }
