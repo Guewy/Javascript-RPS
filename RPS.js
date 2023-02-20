@@ -37,6 +37,14 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game(input){
+    
+    if (round == 5){
+      score = 0;
+      round = 0;
+      playerScore.textContent = 0;
+      computerScore.textContent = 0;
+    }
+    
     //Get the computer choice and label player choice
     let computerSelection = getComputerChoice();
     console.log("Comp choice is:" + choice);
@@ -53,8 +61,6 @@ function game(input){
       if (score<0){
         result.textContent = 'Set over! Computer wins!\r\nPlay again?';
       }
-      score = 0;
-      round = 0;
     }
     return;
 }
