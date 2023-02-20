@@ -1,7 +1,7 @@
 function getComputerChoice(){
     
     //RNG for the computers choice
-    RPS = ["Rock", "Paper", "Scissors"];
+    RPS = ["Rock", "Paper", "Scissor"];
     return choice = RPS[Math.floor(Math.random()*3)];
 }
 
