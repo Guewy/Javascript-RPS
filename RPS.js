@@ -1,72 +1,83 @@
 function getComputerChoice(){
     
     //RNG for the computers choice
-    RPS = ["rock", "paper", "scissors"];
+    RPS = ["Rock", "Paper", "Scissors"];
     return choice = RPS[Math.floor(Math.random()*3)];
 }
 
 function playRound(playerSelection, computerSelection) {
+
+
+    console.log("PC: " + playerSelection + " CS: " + computerSelection);
     
     //Compare all results
     if (playerSelection == computerSelection){
-            result = "tie";
+            result.textContent = "tie";
+            console.log('Draw');
+            return;
         }
-    else if ((playerSelection == "rock" && computerSelection == "scissors") ||
-            (playerSelection == "scissors" && computerSelection == "paper") ||
-            (playerSelection == "paper" && computerSelection == "rock")){
-            result = "player wins";
+    else if ((playerSelection == "Rock" && computerSelection == "Scissor") ||
+            (playerSelection == "Scissor" && computerSelection == "Paper") ||
+            (playerSelection == "Paper" && computerSelection == "Rock")){
+            result.textContent = "player wins";
+            playerScore.textContent++;
+            score++;
+            round++;
+            console.log('Player wins');
+            return;
         }
     else {
-        result = "computer wins";
-    }
-    
-    //Check and return certain results
-    if (result == "player wins"){
-        playerScore = playerScore + 1;
-        return ("The player wins, " + playerSelection + " beats " + computerSelection + ".");
-    }
-    else if (result == "computer wins"){
-        computerScore = computerScore + 1;
-        return ("The computer wins, " + computerSelection + " beats " + playerSelection + ".");
-    }
-    else{
-        return ("It's a tie! Two " + playerSelection + "s.");
+            result.textContent = "computer wins";
+            computerScore.textContent++;
+            score--;
+            round++;
+            console.log('Computer wins');
+            return;
     }
 }
 
-function game(){
-
-    //Ask the player for their choice
-    let playerSelection = prompt("Gimme your choice:").toLowerCase();
- 
-    //Get the computer choice
+function game(input){
+    //Get the computer choice and label player choice
     let computerSelection = getComputerChoice();
+    console.log("Comp choice is:" + choice);
+    let playerSelection = input;
+    console.log('Your input is ' + playerSelection);
+    playRound(playerSelection, computerSelection);
+    console.log(round)
 
-    //Compare the two choices for the result and return round result
-
-    //Advance the round
-    round = round + 1;
-
-    return ("Round " + round + ": " + playRound(playerSelection, computerSelection)); 
+    //Check if the BO5 is over and print resultS
+    if (round == 5){
+      if (score>0){
+        result.textContent = 'Set over! Player wins!\r\nPlay again?';
+      }
+      if (score<0){
+        result.textContent = 'Set over! Computer wins!\r\nPlay again?';
+      }
+      score = 0;
+      round = 0;
+    }
+    return;
 }
 
-//Initialize the round number and score trackers
 let round = 0;
-let playerScore = 0;
-let computerScore = 0;
+let score = 0;
+//If the score is positive, player wins. If negative, computer wins
 
-//Loop the game til it reaches the max round
-for(let i = 0; i<5; i++){
-    console.log(game());
-}
+//Label the paragraphs
+let result = document.getElementById('info');
+let playerScore = document.getElementById('player-Score');
+let computerScore = document.getElementById('computer-Score');
 
-//Declare the winner
-if(playerScore > computerScore){
-    console.log("You win! " + playerScore + "-" + computerScore + ".");
-}
-else if(computerScore > playerScore){
-    console.log("You lose, big sad. " + playerScore + "-" + computerScore +  ".");
-}
-else{
-    console.log("It's a draw! " + playerScore + "-" + computerScore + ".");
-}
+//Add a style for a linebreak
+result.setAttribute('style', 'white-space: pre;');
+
+console.log(round);
+
+document.getElementById('rock-button').addEventListener('click',
+  () => game('Rock'));
+
+document.getElementById('paper-button').addEventListener('click',
+  () => game('Paper'));
+
+document.getElementById('scissor-button').addEventListener('click',
+  () => game('Scissor'));
